@@ -22,17 +22,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # https://github.com/marketplace/actions/markdown-to-pdf-and-html
-      #- uses: baileyjm02/markdown-to-pdf@v1
-      #  with:
-      #    input_path: 'sheets'
-      #    output_dir: generated-files
-      #    build_html: true
-      - uses: ZacJW/markdown-html-action@1.1.0
+      - uses: baileyjm02/markdown-to-pdf@v1
         with:
-          input_files: '[["sheets/*.md"]]'
-          output_files: '["generated-files/index.html"]'
-          #packages: 'pymdown-extensions'
-          #extensions: '["pymdownx.extra"]'
+          input_path: 'sheets'
+          output_dir: generated-files
+          build_html: true
+      - name: Fix links
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: '.md'
+          replace: '.html'
+          regex: false
+          include: 'generated-files/**.html'
       - uses: actions/upload-artifact@v4
         with:
           name: generated-files
