@@ -22,18 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # https://github.com/marketplace/actions/markdown-to-pdf-and-html
-      - uses: baileyjm02/markdown-to-pdf@v1
+      #- uses: baileyjm02/markdown-to-pdf@v1
+      #  with:
+      #    input_path: 'sheets'
+      #    output_dir: generated-files
+      #    build_html: true
+      - uses: ZacJW/markdown-html-action@1.1.0
         with:
-          input_path: 'sheets'
-          output_dir: generated-files
-          build_html: true
-      - name: Replace multiple files
-        uses: richardrigutins/replace-in-files@v2
-        with:
-          files: 'generated-files/*.html'
-          search-text: '.md'
-          replacement-text: '.html'
-          encoding: 'utf8'
+          input_files: '[["sheets/*.md"]]'
+          output_files: '["generated-files/index.html"]'
+          #packages: 'pymdown-extensions'
+          #extensions: '["pymdownx.extra"]'
       - uses: actions/upload-artifact@v4
         with:
           name: generated-files
