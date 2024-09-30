@@ -27,6 +27,13 @@ jobs:
           input_path: 'sheets'
           output_dir: generated-files
           build_html: true
+      - name: Replace multiple files
+        uses: richardrigutins/replace-in-files@v2
+        with:
+          files: 'generated-files/*.html'
+          search-text: '.md'
+          replacement-text: '.html'
+          encoding: 'utf8'
       - uses: actions/upload-artifact@v4
         with:
           name: generated-files
