@@ -71,7 +71,7 @@ jobs:
             ${{ secrets.DOCKERHUB_REPOSITORY }}:build-${{ github.run_number }}
           labels: |
             repository=${{ github.repositoryUrl }}
-            commit=${{ env.GITHUB_SHA }}
+            commit=$GITHUB_SHA
           push: ${{ github.event_name != 'pull_request' }}
       - name: Write Summary
         if: github.event_name != 'pull_request'
