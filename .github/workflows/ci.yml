@@ -41,7 +41,7 @@ jobs:
           cat <<EOF > Dockerfile
           FROM nginx:1.27.1-alpine
           LABEL maintainer="Ralf Ueberfuhr"
-          COPY generated-files/**/*.html /usr/share/nginx/html
+          COPY generated-files/* /usr/share/nginx/html
           EOF
       - name: Upload Dockerfile
         uses: actions/upload-artifact@v4
