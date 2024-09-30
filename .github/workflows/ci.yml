@@ -60,9 +60,6 @@ jobs:
         with:
           name: generated-files
           path: generated-files
-      - name: Find commit SHA
-        id: commit
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       # (optionally) https://github.com/docker/buildx
       # (optionally) https://github.com/docker/metadata-action
       - name: Login to Docker Hub
